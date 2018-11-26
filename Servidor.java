@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Properties;
 
 public class Servidor {
 
@@ -95,9 +96,19 @@ public class Servidor {
 	 */
 	private static boolean procuraArquivo(String fileName) {
 		try {
+			Properties properties = System.getProperties();
+			System.out.println(properties.toString());
+			System.out.println( System.getProperty("os.name"));
+			String barra;
+			if(System.getProperty("os.name").equalsIgnoreCase("windows")){
+				barra= "\\";
+			}else{
+				barra="/";
+			}
 			// Cria o caminho
-			String path = new File(".").getCanonicalPath() + "\\" + fileName.substring(1);
+			String path = new File(".").getCanonicalPath() + barra + fileName.substring(1);
 			//Abre o arquivo
+			System.out.println("path: "+path);
 			File file = new File(path);
 			return file.exists();
 		} catch (IOException ex) {
