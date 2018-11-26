@@ -96,19 +96,20 @@ public class Servidor {
 	 */
 	private static boolean procuraArquivo(String fileName) {
 		try {
+			//Pega as propriedades do OS do servidor para identificar qual a barra a ser usada
 			Properties properties = System.getProperties();
-			System.out.println(properties.toString());
-			System.out.println( System.getProperty("os.name"));
+
 			String barra;
-			if(System.getProperty("os.name").equalsIgnoreCase("windows")){
+			if(System.getProperty("os.name").equalsIgnoreCase("Windows")){
 				barra= "\\";
 			}else{
 				barra="/";
 			}
+
 			// Cria o caminho
 			String path = new File(".").getCanonicalPath() + barra + fileName.substring(1);
+
 			//Abre o arquivo
-			System.out.println("path: "+path);
 			File file = new File(path);
 			return file.exists();
 		} catch (IOException ex) {
